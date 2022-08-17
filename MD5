@@ -1,15 +1,16 @@
-a92e2945b3be8de002ba9db7670cc58c *DESCRIPTION
+9d01266cb308c22c0acfa1dc8b832fbe *DESCRIPTION
 ea7db98022e9ee6051f65370fdc4e839 *LICENSE
 ac324b83f40fdd6a3ed707e2b15b7851 *NAMESPACE
-a51937843a3f08133eb1356d80ded287 *NEWS.md
+6b77259813ad36bb1a187fa2e69d0f91 *NEWS.md
 30ddf4471d01a2cfb26677fa8c9a351b *R/and-package.R
 9dede25bb0ade23c429d71fa1ee5706e *R/and.R
 5cbe6c0840e4893c50b4e2f36e8f648f *R/and_languages.R
+23a23590cfa9f278853a1bd018e61837 *R/normalize.R
 b2baff11cc939f44eb38a5651b2ebf28 *R/set_language.R
 3a47249f0e870ebde1f90d4c89600a56 *R/staticimports.R
-dba8c45939afa6fa52863881da42e252 *R/sysdata.rda
-4d489eb475413e9cb9969f7294c24115 *R/utils.R
-e9cdb0609bef358c910cf4f4fad72b76 *README.md
+7b3e8fa1cb4dddb8ca776ccf5341efad *R/sysdata.rda
+aa6a11e202c3cc54152a8dfe5443c4f9 *R/utils.R
+511fa7971ef394694546431800293509 *README.md
 10e7df648de2005732069a656792ebef *data/and_languages.rda
 08fd4930441c8ad0daea48ec28a192ce *inst/po/af/LC_MESSAGES/R-and.mo
 d1cf89ce1b79daa0d8a58ea2f18ad045 *inst/po/am/LC_MESSAGES/R-and.mo
@@ -210,4 +211,4 @@ adcb84727acac9b1370824b103593657 *po/R-zh.po
 d87cad0d00cccf7c6eb5e93a0f5f135f *po/R-zu.po
 857a858fe258d8bc3486c54639b27f84 *tests/testthat.R
 493429c077a22e626e75d38498839505 *tests/testthat/test-and.R
-7c94a419036f7d1a62e30921b3fc4de5 *tests/testthat/test-utils.R
+9aedab002c4dd0d4402ddc49e5d637a0 *tests/testthat/test-utils.R
