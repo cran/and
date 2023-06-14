@@ -1,3 +1,18 @@
+# and 0.1.4
+
+* Updated `and` with data from the latest Unicode CLDR release: [CLDR 43](https://cldr.unicode.org/index/downloads/cldr-43).
+
+## New partially supported languages
+
+* Western Balochi (bgn)
+	* Supports "and" but not "or"
+* Syriac (syr)
+	* Supports "and" and "or", but doesn't localize comma between list items
+	
+## Bug fixes
+
+* `and()` and `or()` no longer produce unexpected results when `x` is a factor.
+
 # and 0.1.3
 
 * Updated `and` with data from the latest Unicode CLDR release: [CLDR 42](https://cldr.unicode.org/index/downloads/cldr-42).

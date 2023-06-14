@@ -67,7 +67,7 @@ test_that("set language manually", {
 })
 
 test_that("languages with unavailable territories fallback", {
-  expect_equal(and(1:4, language = "en_AU"), "1, 2, 3 and 4")
+  expect_equal(and(1:4, language = "en_PR"), "1, 2, 3, and 4")
   expect_equal(and(1:4, language = "ca_AD"), "1, 2, 3 i 4")
   expect_equal(and(1:4, language = "cy_AR"), "1, 2, 3 a 4")
   expect_equal(and(1:4, language = "es_MX"), "1, 2, 3 y 4")
@@ -330,6 +330,13 @@ test_that("unset language", {
   expect_equal(Sys.getenv("LANGUAGE", "UNSET"), "UNSET")
 
   set_language(old_language)
+})
+
+test_that("supports factors", {
+  withr::local_language("en_US")
+
+  expect_equal(and(factor(c("one", "two", "three"))), "one, two, and three")
+  expect_equal(or(factor(c("one", "two", "three"))), "one, two, or three")
 })
 
 test_that("error if language is not a string", {

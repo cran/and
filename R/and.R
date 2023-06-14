@@ -71,8 +71,10 @@ conjoin <- function(
 ) {
   rlang::check_dots_empty0(..., call = call)
 
+  x <- as.character(x)
+
   if (length(x) == 1) {
-    return(as.character(x))
+    return(x)
   }
 
   if (!is.null(language)) {
@@ -116,14 +118,14 @@ and_glue <- function(conjunction, suffix, data = list()) {
     gettext_key <- switch(
       suffix,
       "start"  = "{x0}, {x1}{tag(and_start)}",
-      "end"    = "{x0} and {x1}{tag(and_end)}",
+      "end"    = "{x0}, and {x1}{tag(and_end)}",
       "2"      = "{x0} and {x1}{tag(and_2)}"
     )
   } else if (conjunction == "or") {
     gettext_key <- switch(
       suffix,
       "start"  = "{x0}, {x1}{tag(or_start)}",
-      "end"    = "{x0} or {x1}{tag(or_end)}",
+      "end"    = "{x0}, or {x1}{tag(or_end)}",
       "2"      = "{x0} or {x1}{tag(or_2)}"
     )
   }
