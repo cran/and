@@ -4,7 +4,6 @@
 \name{and-package}
 \alias{and-package}
 \alias{_PACKAGE}
-\alias{reprex-package}
 \title{and: Construct Natural-Language Lists with Internationalization}
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
@@ -14,7 +13,7 @@ Construct language-aware lists. Make "and"-separated and "or"-separated lists th
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://and.rossellhayes.com}
+  \item \url{https://pkg.rossellhayes.com/and/}
   \item \url{https://github.com/rossellhayes/and}
   \item Report bugs at \url{https://github.com/rossellhayes/and/issues}
 }
@@ -26,6 +25,7 @@ Useful links:
 Other contributors:
 \itemize{
   \item  Unicode, Inc. (Language data) [data contributor]
+  \item Flavia Rossell Hayes [illustrator]
 }
 
 }
