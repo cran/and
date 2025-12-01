@@ -11,9 +11,9 @@ badge](https://rossellhayes.r-universe.dev/badges/and)](https://rossellhayes.r-u
 [![](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![License:
 MIT](https://img.shields.io/badge/license-MIT-blueviolet.svg)](https://cran.r-project.org/web/licenses/MIT)
-[![R build
-status](https://github.com/rossellhayes/and/workflows/R-CMD-check/badge.svg)](https://github.com/rossellhayes/and/actions)
-[![](https://codecov.io/gh/rossellhayes/and/branch/main/graph/badge.svg)](https://app.codecov.io/gh/rossellhayes/and)
+[![R-CMD-check](https://github.com/rossellhayes/and/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/rossellhayes/and/actions/workflows/R-CMD-check.yaml)
+[![Codecov test
+coverage](https://codecov.io/gh/rossellhayes/and/graph/badge.svg)](https://app.codecov.io/gh/rossellhayes/and)
 <!-- badges: end -->
 
 **and** constructs language-aware lists in R. It extends the
@@ -52,7 +52,7 @@ But the Oxford comma is less common in other varieties of English, what
 happens if I change my R language to British English?
 
 ``` r
-Sys.setenv(LANGUAGE = "en_GB")
+local_language("en_GB")
 and(names)
 #> [1] "John, Paul, George and Ringo"
 ```
@@ -60,19 +60,15 @@ and(names)
 What about other languages?
 
 ``` r
-Sys.setenv(LANGUAGE = "es")
+local_language("es")
 and(names)
 #> [1] "John, Paul, George y Ringo"
-```
 
-``` r
-Sys.setenv(LANGUAGE = "eu")
+local_language("eu")
 and(names)
 #> [1] "John, Paul, George eta Ringo"
-```
 
-``` r
-Sys.setenv(LANGUAGE = "ko")
+local_language("ko")
 and(names)
 #> [1] "John, Paul, George 및 Ringo"
 ```
@@ -85,10 +81,13 @@ the next word starts with an ⟨i⟩ or ⟨y⟩:
 
 ``` r
 princess_bride <- c("Vizzini", "Fezzik", "Inigo Montoya")
-Sys.setenv(LANGUAGE = "es")
+local_language("es")
 and(princess_bride)
 #> [1] "Vizzini, Fezzik e Inigo Montoya"
 ```
+
+Special rules like this are implemented for Spanish, Italian, Welsh, and
+Luxembourgish.
 
 ### *or*-separated lists
 
@@ -97,13 +96,11 @@ create *or*-separated lists with all the same contextual awareness.
 
 ``` r
 outcomes <- c("win", "lose", "draw")
-Sys.setenv(LANGUAGE = "en_US")
+local_language("en_US")
 or(outcomes)
 #> [1] "win, lose, or draw"
-```
 
-``` r
-Sys.setenv(LANGUAGE = "ja")
+local_language("ja")
 or(outcomes)
 #> [1] "win、lose、またはdraw"
 ```
@@ -117,19 +114,13 @@ environment variables? You can explicitly set the language using the
 ``` r
 and(names, language = "en_US")
 #> [1] "John, Paul, George, and Ringo"
-```
 
-``` r
 and(names, language = "en_GB")
 #> [1] "John, Paul, George and Ringo"
-```
 
-``` r
 and(names, language = "es")
 #> [1] "John, Paul, George y Ringo"
-```
 
-``` r
 and(names, language = "fr")
 #> [1] "John, Paul, George et Ringo"
 ```
@@ -179,6 +170,7 @@ and(names, language = "fr")
 | [German](https://en.wikipedia.org/wiki/German_language) | `de` | 1, 2, 3 und 4 | 1, 2, 3 oder 4 |
 | [Greek](https://en.wikipedia.org/wiki/Greek_language) | `el` | 1, 2, 3 και 4 | 1, 2, 3 ή 4 |
 | [Gujarati](https://en.wikipedia.org/wiki/Gujarati_language) | `gu` | 1, 2, 3 અને 4 | 1, 2, 3, અથવા 4 |
+| [Haitian Creole](https://en.wikipedia.org/wiki/Haitian_Creole_language) | `ht` | 1, 2, 3 et 4 | 1, 2, 3 ou 4 |
 | [Hausa](https://en.wikipedia.org/wiki/Hausa_language) | `ha` | 1, 2, 3, da 4 | 1, 2, 3 ko 4 |
 | [Hebrew](https://en.wikipedia.org/wiki/Hebrew_language) | `he` | ‏1, 2, 3 ו4‎ | ‏1, 2, 3 או 4‎ |
 | [Hindi](https://en.wikipedia.org/wiki/Hindi_language) | `hi` | 1, 2, 3, और 4 | 1, 2, 3 या 4 |
@@ -263,13 +255,14 @@ and(names, language = "fr")
 
 \* The following English variants use no Oxford comma: `AG`, `AI`, `AT`,
 `AU`, `BB`, `BE`, `BM`, `BS`, `BW`, `BZ`, `CA`, `CC`, `CH`, `CK`, `CM`,
-`CX`, `CY`, `DE`, `DG`, `DK`, `DM`, `ER`, `FI`, `FJ`, `FK`, `FM`, `GB`,
-`GD`, `GG`, `GH`, `GI`, `GM`, `GY`, `HK`, `ID`, `IE`, `IL`, `IM`, `IN`,
-`IO`, `JE`, `JM`, `KE`, `KI`, `KN`, `KY`, `LC`, `LR`, `LS`, `MG`, `MO`,
-`MS`, `MT`, `MU`, `MV`, `MW`, `MY`, `NA`, `NF`, `NG`, `NL`, `NR`, `NU`,
-`NZ`, `PG`, `PK`, `PN`, `PW`, `RW`, `SB`, `SC`, `SD`, `SE`, `SG`, `SH`,
-`SI`, `SL`, `SS`, `SX`, `SZ`, `TC`, `TK`, `TO`, `TT`, `TV`, `TZ`, `UG`,
-`VC`, `VG`, `VU`, `WS`, `ZA`, `ZM`, and `ZW`.
+`CX`, `CY`, `CZ`, `DE`, `DG`, `DK`, `DM`, `ER`, `ES`, `FI`, `FJ`, `FK`,
+`FM`, `FR`, `GB`, `GD`, `GG`, `GH`, `GI`, `GM`, `GS`, `GY`, `HK`, `HU`,
+`ID`, `IE`, `IL`, `IM`, `IN`, `IO`, `IT`, `JE`, `JM`, `KE`, `KI`, `KN`,
+`KY`, `LC`, `LR`, `LS`, `MG`, `MO`, `MS`, `MT`, `MU`, `MV`, `MW`, `MY`,
+`NA`, `NF`, `NG`, `NL`, `NO`, `NR`, `NU`, `NZ`, `PG`, `PK`, `PL`, `PN`,
+`PT`, `PW`, `RO`, `RW`, `SB`, `SC`, `SD`, `SE`, `SG`, `SH`, `SI`, `SK`,
+`SL`, `SS`, `SX`, `SZ`, `TC`, `TK`, `TO`, `TT`, `TV`, `TZ`, `UG`, `VC`,
+`VG`, `VU`, `WS`, `ZA`, `ZM`, and `ZW`.
 
 #### Partially supported languages
 
@@ -286,7 +279,7 @@ Partially supported languages generally localize `and()` but not `or()`.
 | [Friulian](https://en.wikipedia.org/wiki/Friulian_language) | `fur` | 1, 2, 3 e 4 |
 | [Interlingue](https://en.wikipedia.org/wiki/Interlingue_language) | `ie` | 1, 2, 3, 4 |
 | [Kashmiri](https://en.wikipedia.org/wiki/Kashmiri_language) | `ks` | ‏1، 2، 3، تٕہ 4‎ |
-| [Luxembourgish](https://en.wikipedia.org/wiki/Luxembourgish_language) | `lb` | 1, 2, 3 a(n) 4 |
+| [Luxembourgish](https://en.wikipedia.org/wiki/Luxembourgish_language) | `lb` | 1, 2, 3 a 4 |
 | [Maithili](https://en.wikipedia.org/wiki/Maithili_language) | `mai` | 1, 2, 3, और 4 |
 | [Maltese](https://en.wikipedia.org/wiki/Maltese_language) | `mt` | 1, 2, 3, u 4 |
 | [Manipuri](https://en.wikipedia.org/wiki/Manipuri_language) | `mni` | 1, 2, 3 অমসুং 4 |
